@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ITUniver.DocBase.Web.Models.DocumentModel>
+
+@{
+    ViewBag.Title = "Index";
+    
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New Document", "AddDocument")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocAddDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocAutorId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.File)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocAddDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocAutorId)
+        </td>
+        <td>
+            @if (item.File.Length > 30)
+            {
+                string file = item.File.Substring(0, 30) + "...";
+                @Html.DisplayFor(modelItem => file)
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.File)
+            }
+        </td>
+    </tr>
+}
+
+</table>
